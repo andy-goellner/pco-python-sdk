@@ -1,4 +1,5 @@
 import json
+from typing import Any, Dict
 from pco_python_sdk.settings import Settings
 from requests import Session
 
@@ -13,9 +14,9 @@ class Client:
         self,
         verb: str,
         endpoint: str,
-        query: dict = {},
-        payload: dict = {},
-        headers: dict = {},
+        query: Dict[str, str] = {},
+        payload: Dict[str, Any] = {},
+        headers: Dict[str, str] = {},
     ):
         url = f"{self.settings.base_url}/{endpoint}"
         self.session.request(
@@ -24,8 +25,5 @@ class Client:
             params=query,
             json=json.dumps(payload),
             headers=headers,
-            auth=self.auth,
+            auth=None,
         )
-
-    def dump_settings(self):
-        return self.settings.model_dump()
