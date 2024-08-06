@@ -10,9 +10,9 @@ packages = [{include = "pco_python_sdk", from = "src"}]
 [tool.poetry.dependencies]
 python = ">=3.8"
 pydantic = ">=2.8.0"
-pydantic-settings = "^2.4.0"
-requests = "^2.32.3"
-requests-oauthlib = "^2.0.0"
+pydantic-settings = ">=2.4.0"
+requests = ">=2.32.3"
+requests-oauthlib = ">=2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.3.2"
