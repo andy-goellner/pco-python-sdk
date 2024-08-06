@@ -1,2 +1,2 @@
-from ..api.client import Client as Client
-from ..api.session import Session as Session
+from .client import Client as Client
+from .session import Session as Session

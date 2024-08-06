@@ -8,6 +8,10 @@ SIGNATURE_HEADER = "X-PCO-Webhooks-Authenticity"
 
 
 class WebhookSignature(object):
+    """Represents the signature of a webhook from PCO. Can validate that the webhook is
+    valid and signed correctly.
+    """
+
     @staticmethod
     def _compute_signature(payload: str, secret: str) -> str:
         mac = hmac.new(
@@ -23,6 +27,21 @@ class WebhookSignature(object):
 
     @classmethod
     def verify(cls, payload: str, headers: Dict[str, Any], secret: str) -> bool:
+        """Verifies the authenticity of a PCO generated webhook. Based on the webhook
+        signing documented here https://developer.planning.center/docs/#/overview/webhooks.
+
+        Args:
+            payload (str): A json representation of the payload (body) included in the request
+            headers (Dict[str, Any]): A dictionary of the headers included in the request.
+            secret (str): The secret provided by PCO for signing webhooks for those events.
+
+        Raises:
+            SignatureVerificationError: The message of the exception will include the a description
+                of the error. Also the header signature (if available) and the body will be included.
+
+        Returns:
+            bool: A boolean indicating if the webhook is valid (True) or invalid (False)
+        """
         try:
             signature = cls._get_header_signature(headers)
         except Exception:
