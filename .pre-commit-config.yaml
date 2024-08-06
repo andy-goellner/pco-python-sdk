@@ -1,4 +1,10 @@
 repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+    - id: check-ast
 - repo: https://github.com/astral-sh/ruff-pre-commit
   # Ruff version.
   rev: v0.5.5
@@ -8,3 +14,16 @@ repos:
       args: [ --fix ]
     # Run the formatter.
     - id: ruff-format
+- repo: https://github.com/python-poetry/poetry
+  rev: '1.8.3'
+  hooks:
+    - id: poetry-check
+- repo: local
+  hooks:
+  -   id: tests
+      name: run tests
+      entry: poetry run pytest
+      language: system
+      types: [python]
+      pass_filenames: false
+      always_run: true
