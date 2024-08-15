@@ -3,6 +3,8 @@ from typing import Any, Dict
 
 
 class AbstractClient(ABC):
+    """Abstract base class representation for the HTTP client. Should be inherited and overridden."""
+
     def request(
         self,
         verb: str,
