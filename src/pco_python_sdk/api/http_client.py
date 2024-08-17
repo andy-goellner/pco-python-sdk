@@ -1,11 +1,11 @@
 import json
 from typing import Any, Dict, Optional
-from pco_python_sdk.api import AbstractClient, Session
+from pco_python_sdk.api import AbstractHttpClient, Session
 from pco_python_sdk.errors import RequestFailedError
 from pco_python_sdk.settings import Settings
 
 
-class Client(AbstractClient):
+class HttpClient(AbstractHttpClient):
     """An HTTP Client implementation of the AbstractClient. Handles auth and making requests to
     the planning center api.
     """
@@ -13,7 +13,6 @@ class Client(AbstractClient):
     def __init__(self, settings: Settings = Settings(), session: Session = Session()):
         self.settings = settings
         self.session = session
-        self.token = "something_here"
 
     def request(
         self,

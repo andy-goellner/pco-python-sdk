@@ -1,13 +1,13 @@
 from typing import Any, Dict
 
 import pytest
-from pco_python_sdk.api import AbstractClient
+from pco_python_sdk.api import AbstractHttpClient
 from pco_python_sdk.errors import RequestFailedError
 
 
 @pytest.fixture
-def successful_client() -> AbstractClient:
-    class FakeClient(AbstractClient):
+def successful_client() -> AbstractHttpClient:
+    class FakeClient(AbstractHttpClient):
         def request(
             self,
             verb: str,
@@ -23,7 +23,7 @@ def successful_client() -> AbstractClient:
 
 @pytest.fixture
 def failed_client():
-    class FakeClient(AbstractClient):
+    class FakeClient(AbstractHttpClient):
         def request(
             self,
             verb: str,

@@ -1,14 +1,14 @@
 from typing import Any, Dict, Optional, Self
-from pco_python_sdk.api import AbstractClient, Client
+from pco_python_sdk.api import AbstractHttpClient, HttpClient
 from pco_python_sdk.errors import InvalidRequestError
 
 
 class PCOObject:
     """Base class object from which all Planning Center objects should inherit from"""
 
-    def __init__(self, id: str, client: Optional[AbstractClient] = None):
+    def __init__(self, id: str, client: Optional[AbstractHttpClient] = None):
         self.id = id
-        self._client = Client() if client is None else client
+        self._client = HttpClient() if client is None else client
 
     @classmethod
     def retrieve(cls, id: str) -> Self:

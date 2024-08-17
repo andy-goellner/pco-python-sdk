@@ -1,9 +1,9 @@
-from pco_python_sdk.api.client import Client
+from pco_python_sdk.api.http_client import HttpClient
 
 
 class TestClient:
-    client = Client()
+    client = HttpClient()
 
     def test_session_identity(self):
-        print(Client().session)
-        assert Client().session == Client().session
+        print(HttpClient().session)
+        assert HttpClient().session == HttpClient().session
