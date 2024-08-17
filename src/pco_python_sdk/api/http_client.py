@@ -1,8 +1,9 @@
 import json
 from typing import Any, Dict, Optional
-from pco_python_sdk.api import AbstractHttpClient, Session
+from pco_python_sdk.api import AbstractHttpClient
+from pco_python_sdk.api.credentials import Credentials
+from pco_python_sdk.api.session import Session
 from pco_python_sdk.errors import RequestFailedError
-from pco_python_sdk.settings import Settings
 
 
 class HttpClient(AbstractHttpClient):
@@ -10,9 +11,9 @@ class HttpClient(AbstractHttpClient):
     the planning center api.
     """
 
-    def __init__(self, settings: Settings = Settings(), session: Session = Session()):
-        self.settings = settings
-        self.session = session
+    def __init__(self, credentials: Credentials):
+        self.base_url = "https://api.planningcenteronline.com"
+        self.session = Session(credentials)
 
     def request(
         self,
@@ -37,7 +38,7 @@ class HttpClient(AbstractHttpClient):
         Returns:
             Dict[str, Any]: parsed json body of the response.
         """
-        url = f"{self.settings.base_url}/{endpoint}"
+        url = f"{self.base_url}/{endpoint}"
         body = json.dumps(payload) if payload else payload
         response = self.session.request(
             method=verb,

@@ -7,7 +7,8 @@ class Person(PCOObject):
 
     @classmethod
     def retrieve(cls, id: str, **params: Any) -> Self:
-        instance = cls(id=id, **params)
+        instance = cls(**params)
+        instance.id = id
         instance.refresh()
         return instance
 

@@ -5,12 +5,14 @@ from pco_python_sdk.models.pco_object import PCOObject
 from pco_python_sdk.models.person import Person
 
 
-def test_endpoint_is_a_class_var():
-    assert Person(id="foo").object_url() == "people/v2/people"
+def test_object_url_returns_the_base_endpoint():
+    assert Person(client=object).object_url() == "people/v2/people"  # type: ignore
 
 
-def test_endpoint_is_an_inst_var():
-    assert Person(id="foo").instance_url() == "people/v2/people/foo"
+def test_instance_url_includes_id():
+    person = Person(client=object)  # type: ignore
+    person.id = "foo"
+    assert person.instance_url() == "people/v2/people/foo"  # type: ignore
 
 
 def test_person_is_a_pco_object():
