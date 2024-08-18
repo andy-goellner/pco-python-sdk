@@ -12,5 +12,9 @@ class Person(PCOObject):
         instance.refresh()
         return instance
 
+    def get(self, id: str) -> None:
+        self.id = id
+        self.refresh()
+
     def object_url(self) -> str:
         return "people/v2/people"

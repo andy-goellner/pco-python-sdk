@@ -19,6 +19,12 @@ def test_person_is_a_pco_object():
     assert issubclass(Person, PCOObject)
 
 
+def test_person_id_setter_sets_the_id():
+    person = Person(client=object)  # type: ignore
+    person.id = "foo"
+    assert person.id == "foo"
+
+
 def test_person_retrieve_sets_the_id(successful_client: AbstractHttpClient):
     person = Person.retrieve(id="foo", client=successful_client)
     assert person.id == "foo"

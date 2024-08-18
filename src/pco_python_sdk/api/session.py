@@ -1,10 +1,11 @@
-from oauthlib.oauth2 import BackendApplicationClient
+from dataclasses import asdict
 from requests_oauthlib import OAuth2Session
 
 from pco_python_sdk.api.credentials import Credentials
 from pco_python_sdk.errors import InvalidCredentialsError
 
 TOKEN_URL = "https://api.planningcenteronline.com/oauth/token"
+SCOPES = "people check_ins groups"
 
 
 class Session(OAuth2Session):
@@ -18,18 +19,19 @@ class Session(OAuth2Session):
 
         pco_client_id = self.credentials.client_id
         pco_client_secret = self.credentials.client_secret
+        auto_refresh_kwargs = {
+            "client_id": pco_client_id,
+            "client_secret": pco_client_secret,
+        }
 
         if credentials.pco_token:
-            scope = "people"
-            client = BackendApplicationClient(client_id=pco_client_id, scope=scope)
-            super().__init__(client=client)  # type: ignore
-
-            token = self.fetch_token(  # type: ignore
-                token_url=TOKEN_URL,
-                client_id=pco_client_id,
-                client_secret=pco_client_secret,
+            super().__init__(  # type: ignore
+                pco_client_id,
+                scope=SCOPES,
+                auto_refresh_url=TOKEN_URL,
+                token=asdict(credentials.pco_token),
+                auto_refresh_kwargs=auto_refresh_kwargs,
             )
-            print(token)  # TODO: Remove this
             return
 
         if credentials.access_code:

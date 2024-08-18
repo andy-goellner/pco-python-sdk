@@ -10,7 +10,10 @@ class PCOObject:
         self._client = client
 
     @classmethod
-    def retrieve(cls, id: str) -> Self:
+    def retrieve(cls, id: str, **params: Any) -> Self:
+        raise NotImplementedError
+
+    def get(self, id: str) -> None:
         raise NotImplementedError
 
     def object_url(self) -> str:

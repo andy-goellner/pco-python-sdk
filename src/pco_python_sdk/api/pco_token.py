@@ -4,6 +4,7 @@ from typing import Optional
 
 @dataclass
 class PCOToken:
-    created_at: Optional[int] = None
-    expires_in: Optional[int] = None
+    token_type: str = "bearer"
+    access_token: Optional[str] = None
+    expires_in: Optional[int] = -1
     refresh_token: Optional[str] = None
