@@ -23,6 +23,7 @@ class Session(OAuth2Session):
             "client_id": pco_client_id,
             "client_secret": pco_client_secret,
         }
+        token_updater = self.credentials.token_updater
 
         if credentials.pco_token:
             super().__init__(  # type: ignore
@@ -31,6 +32,7 @@ class Session(OAuth2Session):
                 auto_refresh_url=TOKEN_URL,
                 token=asdict(credentials.pco_token),
                 auto_refresh_kwargs=auto_refresh_kwargs,
+                token_updater=token_updater,
             )
             return
 
