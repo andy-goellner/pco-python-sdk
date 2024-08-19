@@ -16,6 +16,7 @@ requests-oauthlib = ">=2.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.3.2"
+pytest-mock = "^3.14.0"
 
 [tool.poetry.group.typing.dependencies]
 mypy = ">=1.11.0"
