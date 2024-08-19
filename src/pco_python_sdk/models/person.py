@@ -1,9 +1,20 @@
-from pydantic import BaseModel
+from typing import Any, ClassVar, Self
+from pco_python_sdk.models.pco_object import PCOObject
 
-from pco_python_sdk.models.person_attributes import PersonAttributes
 
+class Person(PCOObject):
+    object_type: ClassVar[str] = "Person"
 
-class Person(BaseModel):
-    type: str = "Person"
-    id: str
-    attributes: PersonAttributes
+    @classmethod
+    def retrieve(cls, id: str, **params: Any) -> Self:
+        instance = cls(**params)
+        instance.id = id
+        instance.refresh()
+        return instance
+
+    def get(self, id: str) -> None:
+        self.id = id
+        self.refresh()
+
+    def object_url(self) -> str:
+        return "people/v2/people"
