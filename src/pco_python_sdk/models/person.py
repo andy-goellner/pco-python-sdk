@@ -7,7 +7,7 @@ from pco_python_sdk.models.pco_object import PCOObject
 class Person(PCOObject):
     object_type: ClassVar[str] = "Person"
 
-    class UpdatePersonParams(TypedDict):
+    class CreatePersonParams(TypedDict):
         accounting_administrator: NotRequired[bool]
         anniversary: NotRequired[date]
         birthdate: NotRequired[date]
@@ -31,6 +31,9 @@ class Person(PCOObject):
         remote_id: NotRequired[int]
         status: NotRequired[str]
 
+    class UpdatePersonParams(CreatePersonParams):
+        pass
+
     @classmethod
     def retrieve(cls, id: str, **params: Any) -> Self:
         instance = cls(**params)
@@ -42,7 +45,10 @@ class Person(PCOObject):
         self.id = id
         self.refresh()
 
-    def update(self, params: UpdatePersonParams):
+    def create(self, params: CreatePersonParams) -> None:
+        self._create_object(params)  # type: ignore
+
+    def update(self, params: UpdatePersonParams) -> None:
         if not self.id:
             raise IdRequiredError(self)
         self._update_object(params)  # type: ignore

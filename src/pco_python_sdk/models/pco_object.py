@@ -45,6 +45,9 @@ class PCOObject:
         for k, v in props.items():
             setattr(self, k, v)
 
+    def _create_object(self, params: Dict[str, Any]) -> None:
+        self._client.request("post", self.object_url(), payload=params)
+
     def _update_object(self, params: Dict[str, Any]) -> None:
         self._client.request("patch", self.instance_url(), payload=params)
 

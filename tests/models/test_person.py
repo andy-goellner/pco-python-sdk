@@ -42,6 +42,29 @@ def test_person_retrieve_sets_properties(successful_client: AbstractHttpClient):
     assert person.fake_prop == "foobar"  # type: ignore
 
 
+def test_person_create_person_attributes_returns_a_dict():
+    params = Person.CreatePersonParams(
+        child=False, first_name="Daffy", last_name="Duck"
+    )
+    assert params == {"child": False, "first_name": "Daffy", "last_name": "Duck"}
+
+
+def test_create_person_passes_attributes_to_client_as_dict(
+    mocker: MagicMock, successful_client: AbstractHttpClient
+):
+    spy = mocker.spy(successful_client, "request")
+    params = Person.CreatePersonParams(
+        child=False, first_name="Daffy", last_name="Duck"
+    )
+    person = Person(client=successful_client)
+    person.create(params)
+    spy.assert_called_once_with(
+        "post",
+        "people/v2/people",
+        payload={"child": False, "first_name": "Daffy", "last_name": "Duck"},
+    )
+
+
 def test_update_person_attributes_returns_a_dict():
     params = Person.UpdatePersonParams(
         child=False, first_name="Daffy", last_name="Duck"
