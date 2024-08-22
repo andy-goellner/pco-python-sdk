@@ -51,6 +51,9 @@ class PCOObject:
     def _update_object(self, params: Dict[str, Any]) -> None:
         self._client.request("patch", self.instance_url(), payload=params)
 
+    def _delete_object(self) -> None:
+        self._client.request("delete", self.instance_url())
+
     @property
     def id(self) -> str:
         return self._id
