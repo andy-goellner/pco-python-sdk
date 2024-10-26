@@ -1,8 +1,8 @@
 from datetime import date, datetime
 from typing import Any, ClassVar, Literal, NotRequired, Self, TypedDict
-from pco_python_sdk.errors import IdRequiredError
-from pco_python_sdk.models._pagination_params import PaginationParams
-from pco_python_sdk.models.pco_object import PCOObject
+from pco_python.errors import IdRequiredError
+from pco_python.models._pagination_params import PaginationParams
+from pco_python.models.pco_object import PCOObject
 
 
 class Person(PCOObject):

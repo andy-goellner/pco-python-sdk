@@ -1,8 +1,8 @@
 from dataclasses import asdict
 from requests_oauthlib import OAuth2Session
 
-from pco_python_sdk.api.credentials import Credentials
-from pco_python_sdk.errors import InvalidCredentialsError
+from pco_python.api.credentials import Credentials
+from pco_python.errors import InvalidCredentialsError
 
 TOKEN_URL = "https://api.planningcenteronline.com/oauth/token"
 SCOPES = "people check_ins groups"

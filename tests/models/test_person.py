@@ -1,9 +1,9 @@
 from unittest.mock import MagicMock
 import pytest
-from pco_python_sdk.api import AbstractHttpClient
-from pco_python_sdk.errors import RequestFailedError
-from pco_python_sdk.models.pco_object import PCOObject
-from pco_python_sdk.models.person import Person
+from pco_python.api import AbstractHttpClient
+from pco_python.errors import RequestFailedError
+from pco_python.models.pco_object import PCOObject
+from pco_python.models.person import Person
 
 
 def test_object_url_returns_the_base_endpoint():

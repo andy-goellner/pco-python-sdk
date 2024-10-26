@@ -1,8 +1,8 @@
 from typing import Optional
-from pco_python_sdk.api.abstract_http_client import AbstractHttpClient
-from pco_python_sdk.api.credentials import Credentials
-from pco_python_sdk.api.http_client import HttpClient
-from pco_python_sdk.models.person import Person
+from pco_python.api.abstract_http_client import AbstractHttpClient
+from pco_python.api.credentials import Credentials
+from pco_python.api.http_client import HttpClient
+from pco_python.models.person import Person
 
 
 class PCOClient(object):

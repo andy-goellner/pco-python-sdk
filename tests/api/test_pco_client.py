@@ -1,6 +1,6 @@
-from pco_python_sdk.api import Credentials, PCOClient
-from pco_python_sdk.api.abstract_http_client import AbstractHttpClient
-from pco_python_sdk.models.person import Person
+from pco_python.api import Credentials, PCOClient
+from pco_python.api.abstract_http_client import AbstractHttpClient
+from pco_python.models.person import Person
 
 
 def test_pco_client_initializes_an_http_client(

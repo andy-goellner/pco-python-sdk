@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "pco_python_sdk"
+name = "pco_python"
 version = "0.1.0"
 description = ""
 authors = ["Andy Goellner <agoellner@yahoo.com>"]
 license = "GNU GPLv3"
 readme = "README.md"
-packages = [{include = "pco_python_sdk", from = "src"}]
+packages = [{include = "pco_python", from = "src"}]
 
 [tool.poetry.dependencies]
 python = ">=3.8"

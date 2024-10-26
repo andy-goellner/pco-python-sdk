@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-from pco_python_sdk.models._pagination_params import PaginationParams
+from pco_python.models._pagination_params import PaginationParams
 
 
 @dataclass

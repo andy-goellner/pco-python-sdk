@@ -1,9 +1,9 @@
 import json
 from typing import Any, Dict, Optional
-from pco_python_sdk.api import AbstractHttpClient
-from pco_python_sdk.api.credentials import Credentials
-from pco_python_sdk.api.session import Session
-from pco_python_sdk.errors import RequestFailedError
+from pco_python.api import AbstractHttpClient
+from pco_python.api.credentials import Credentials
+from pco_python.api.session import Session
+from pco_python.errors import RequestFailedError
 
 
 class HttpClient(AbstractHttpClient):

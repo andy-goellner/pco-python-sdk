@@ -1,4 +1,4 @@
-from pco_python_sdk.errors import SignatureVerificationError
+from pco_python.errors import SignatureVerificationError
 
 
 class TestSignatureError(object):

@@ -1,6 +1,6 @@
 from typing import Any, Dict, Self
-from pco_python_sdk.api import AbstractHttpClient
-from pco_python_sdk.errors import InvalidRequestError
+from pco_python.api import AbstractHttpClient
+from pco_python.errors import InvalidRequestError
 
 
 class PCOObject:
