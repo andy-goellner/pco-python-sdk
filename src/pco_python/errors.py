@@ -21,3 +21,9 @@ class RequestFailedError(BaseError):
 
 class InvalidCredentialsError(BaseError):
     pass
+
+
+class IdRequiredError(BaseError):
+    def __init__(self, klass: object):
+        message = f"Id required to make an update request for {type(klass).__name__}"
+        super().__init__(message)

@@ -1,6 +1,6 @@
 from typing import Any, Dict, Self
-from pco_python_sdk.api import AbstractHttpClient
-from pco_python_sdk.errors import InvalidRequestError
+from pco_python.api import AbstractHttpClient
+from pco_python.errors import InvalidRequestError
 
 
 class PCOObject:
@@ -44,6 +44,15 @@ class PCOObject:
         """
         for k, v in props.items():
             setattr(self, k, v)
+
+    def _create_object(self, params: Dict[str, Any]) -> None:
+        self._client.request("post", self.object_url(), payload=params)
+
+    def _update_object(self, params: Dict[str, Any]) -> None:
+        self._client.request("patch", self.instance_url(), payload=params)
+
+    def _delete_object(self) -> None:
+        self._client.request("delete", self.instance_url())
 
     @property
     def id(self) -> str:

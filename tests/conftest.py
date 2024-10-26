@@ -1,8 +1,8 @@
 from typing import Any, Dict
 
 import pytest
-from pco_python_sdk.api import AbstractHttpClient, Credentials, PCOToken
-from pco_python_sdk.errors import RequestFailedError
+from pco_python.api import AbstractHttpClient, Credentials, PCOToken
+from pco_python.errors import RequestFailedError
 
 
 @pytest.fixture
