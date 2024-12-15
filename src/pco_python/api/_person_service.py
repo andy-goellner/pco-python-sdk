@@ -52,5 +52,5 @@ class PersonService(PcoService):
         # query_params:
 
     def get(self, id: str, params: Optional[UrlParams] = None) -> Person:
-        response = self._request("GET", f"people/v2/people/{id}", params)
+        response = self._request("GET", f"{Person.OBJECT_URL}/{id}", params)
         return Person(response.data)

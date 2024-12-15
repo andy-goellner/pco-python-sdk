@@ -1,4 +1,4 @@
-from typing import Any, Mapping
+from typing import Any, Mapping, Optional
 from pco_python.api.abstract_http_client import AbstractHttpClient
 from pco_python.data.api_response.pco_response import PCOResponse
 from pco_python.models.pco_object import PCOObject
@@ -11,7 +11,9 @@ class PcoService(object):
     def get(self, id: str, params: Any = None) -> PCOObject:
         raise NotImplementedError
 
-    def _request(self, verb: str, url: str, params: Mapping[str, Any]) -> PCOResponse:
+    def _request(
+        self, verb: str, url: str, params: Optional[Mapping[str, str]] = None
+    ) -> PCOResponse:
         if verb == "get":
             query = params
             payload = None

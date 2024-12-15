@@ -1,5 +1,6 @@
 from abc import ABC
-from typing import Any, Dict
+from collections.abc import Mapping
+from typing import Any, Optional
 
 from pco_python.data.api_response.pco_response import PCOResponse
 
@@ -11,8 +12,8 @@ class AbstractHttpClient(ABC):
         self,
         verb: str,
         endpoint: str,
-        query: Dict[str, str] = {},
-        payload: Dict[str, Any] = {},
-        headers: Dict[str, str] = {},
+        query: Optional[Mapping[str, str]] = None,
+        payload: Optional[Mapping[str, Any]] = None,
+        headers: Optional[Mapping[str, str]] = None,
     ) -> PCOResponse:
         raise NotImplementedError

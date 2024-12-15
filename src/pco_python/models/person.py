@@ -1,11 +1,11 @@
 from datetime import date, datetime
-from typing import Any, ClassVar, NotRequired, Self, TypedDict
-from pco_python.errors import IdRequiredError
+from typing import ClassVar, NotRequired, TypedDict
 from pco_python.models.pco_object import PCOObject
 
 
 class Person(PCOObject):
-    object_type: ClassVar[str] = "Person"
+    OBJECT_TYPE: ClassVar[str] = "Person"
+    OBJECT_URL: ClassVar[str] = "people/v2/people"
 
     class CreatePersonParams(TypedDict):
         accounting_administrator: NotRequired[bool]
@@ -63,27 +63,16 @@ class Person(PCOObject):
         status: NotRequired[str]
         updated_at: NotRequired[datetime]
 
-    @classmethod
-    def retrieve(cls, id: str, **params: Any) -> Self:
-        instance = cls(**params)
-        instance.id = id
-        instance.refresh()
-        return instance
+    # def create(self, params: CreatePersonParams) -> None:
+    #     self._create_object(params)  # type: ignore
 
-    def get(self, id: str) -> None:
-        self.id = id
-        self.refresh()
+    # def update(self, params: UpdatePersonParams) -> None:
+    #     if not self.id:
+    #         raise IdRequiredError(self)
+    #     self._update_object(params)  # type: ignore
 
-    def create(self, params: CreatePersonParams) -> None:
-        self._create_object(params)  # type: ignore
+    # def delete(self) -> None:
+    #     self._delete_object()
 
-    def update(self, params: UpdatePersonParams) -> None:
-        if not self.id:
-            raise IdRequiredError(self)
-        self._update_object(params)  # type: ignore
-
-    def delete(self) -> None:
-        self._delete_object()
-
-    def object_url(self) -> str:
-        return "people/v2/people"
+    def _object_url(self) -> str:
+        return self.OBJECT_URL

@@ -1,7 +1,10 @@
-from typing import Any, Dict
+from collections.abc import Mapping
+import json
+from typing import Any, Optional
 
 import pytest
 from pco_python.api import AbstractHttpClient, Credentials, PCOToken
+from pco_python.data.api_response.pco_response import PCOResponse
 from pco_python.errors import RequestFailedError
 
 
@@ -12,11 +15,17 @@ def successful_client() -> AbstractHttpClient:
             self,
             verb: str,
             endpoint: str,
-            query: Dict[str, str] = {},
-            payload: Dict[str, Any] = {},
-            headers: Dict[str, str] = {},
-        ) -> Dict[str, Any]:
-            return {"id": "1234", "attributes": {"fake_prop": "foobar"}}
+            query: Optional[Mapping[str, str]] = None,
+            payload: Optional[Mapping[str, Any]] = None,
+            headers: Optional[Mapping[str, str]] = None,
+        ) -> PCOResponse:
+            return PCOResponse(
+                body=json.dumps(
+                    {"data": {"id": "1234", "attributes": {"fake_prop": "foobar"}}}
+                ),
+                code=200,
+                headers={},
+            )
 
     return FakeClient()
 
@@ -28,10 +37,10 @@ def failed_client():
             self,
             verb: str,
             endpoint: str,
-            query: Dict[str, str] = {},
-            payload: Dict[str, Any] = {},
-            headers: Dict[str, str] = {},
-        ) -> Dict[str, Any]:
+            query: Optional[Mapping[str, str]] = None,
+            payload: Optional[Mapping[str, Any]] = None,
+            headers: Optional[Mapping[str, str]] = None,
+        ) -> PCOResponse:
             raise RequestFailedError(message="failed request", status_code=400)
 
     return FakeClient()
