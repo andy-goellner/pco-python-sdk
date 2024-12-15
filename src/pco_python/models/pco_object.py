@@ -1,20 +1,13 @@
-from typing import Any, Dict, Self
-from pco_python.api import AbstractHttpClient
+from collections.abc import Mapping
+from typing import Any, Dict
 from pco_python.errors import InvalidRequestError
 
 
 class PCOObject:
     """Base class object from which all Planning Center objects should inherit from"""
 
-    def __init__(self, client: AbstractHttpClient):
-        self._client = client
-
-    @classmethod
-    def retrieve(cls, id: str, **params: Any) -> Self:
-        raise NotImplementedError
-
-    def get(self, id: str) -> None:
-        raise NotImplementedError
+    def __init__(self, data: Mapping[str, Any]):
+        self._data = data
 
     def object_url(self) -> str:
         raise NotImplementedError

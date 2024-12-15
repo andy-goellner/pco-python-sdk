@@ -1,7 +1,6 @@
 from datetime import date, datetime
-from typing import Any, ClassVar, Literal, NotRequired, Self, TypedDict
+from typing import Any, ClassVar, NotRequired, Self, TypedDict
 from pco_python.errors import IdRequiredError
-from pco_python.models._pagination_params import PaginationParams
 from pco_python.models.pco_object import PCOObject
 
 
@@ -63,51 +62,6 @@ class Person(PCOObject):
         site_administrator: NotRequired[bool]
         status: NotRequired[str]
         updated_at: NotRequired[datetime]
-
-    class UrlParams(TypedDict):
-        include: list[
-            Literal[
-                "addresses",
-                "emails",
-                "field_data",
-                "households",
-                "inactive_reason",
-                "marital_status",
-                "name_prefix",
-                "name_suffix",
-                "organization",
-                "person_apps",
-                "phone_numbers",
-                "platform_notifications",
-                "primary_campus",
-                "school",
-                "social_profiles",
-            ]
-        ]
-        order: Literal[
-            "accounting_administrator",
-            "anniversary",
-            "birthdate",
-            "child",
-            "given_name",
-            "grade",
-            "graduation_year",
-            "last_name",
-            "middle_name",
-            "nickname",
-            "people_permissions",
-            "site_administrator",
-            "gender",
-            "inactivated_at",
-            "created_at",
-            "updated_at",
-            "first_name",
-            "remote_id",
-            "membership",
-            "status",
-        ]
-        pagination: PaginationParams
-        # query_params:
 
     @classmethod
     def retrieve(cls, id: str, **params: Any) -> Self:
