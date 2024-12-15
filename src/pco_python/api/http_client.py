@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Mapping, Optional
+from typing import Any, Mapping, Optional
 from pco_python.api import AbstractHttpClient
 from pco_python.api.credentials import Credentials
 from pco_python.api.session import Session
