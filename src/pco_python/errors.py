@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class BaseError(Exception):
     pass
 
@@ -27,3 +30,12 @@ class IdRequiredError(BaseError):
     def __init__(self, klass: object):
         message = f"Id required to make an update request for {type(klass).__name__}"
         super().__init__(message)
+
+
+class InvalidParamsError(BaseError):
+    def __init__(self, klass: object, param_name: str, message: Optional[str] = None):
+        message = message or f"{param_name} is required for {type(klass).__name__}"
+        super().__init__(message)
+        self.klass = klass
+        self.class_name = type(klass).__name__
+        self.param_name = param_name

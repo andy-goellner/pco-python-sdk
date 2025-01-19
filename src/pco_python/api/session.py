@@ -1,4 +1,3 @@
-from dataclasses import asdict
 from requests_oauthlib import OAuth2Session
 
 from pco_python.api.credentials import Credentials
@@ -28,9 +27,8 @@ class Session(OAuth2Session):
         if credentials.pco_token:
             super().__init__(  # type: ignore
                 pco_client_id,
-                scope=SCOPES,
                 auto_refresh_url=TOKEN_URL,
-                token=asdict(credentials.pco_token),
+                token=credentials.pco_token.as_dict(),
                 auto_refresh_kwargs=auto_refresh_kwargs,
                 token_updater=token_updater,
             )

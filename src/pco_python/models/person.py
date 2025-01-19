@@ -1,12 +1,11 @@
 from datetime import date, datetime
-from typing import Any, ClassVar, Literal, NotRequired, Self, TypedDict
-from pco_python.errors import IdRequiredError
-from pco_python.models._pagination_params import PaginationParams
+from typing import ClassVar, NotRequired, TypedDict
 from pco_python.models.pco_object import PCOObject
 
 
 class Person(PCOObject):
-    object_type: ClassVar[str] = "Person"
+    OBJECT_TYPE: ClassVar[str] = "Person"
+    OBJECT_URL: ClassVar[str] = "people/v2/people"
 
     class CreatePersonParams(TypedDict):
         accounting_administrator: NotRequired[bool]
@@ -64,72 +63,16 @@ class Person(PCOObject):
         status: NotRequired[str]
         updated_at: NotRequired[datetime]
 
-    class UrlParams(TypedDict):
-        include: list[
-            Literal[
-                "addresses",
-                "emails",
-                "field_data",
-                "households",
-                "inactive_reason",
-                "marital_status",
-                "name_prefix",
-                "name_suffix",
-                "organization",
-                "person_apps",
-                "phone_numbers",
-                "platform_notifications",
-                "primary_campus",
-                "school",
-                "social_profiles",
-            ]
-        ]
-        order: Literal[
-            "accounting_administrator",
-            "anniversary",
-            "birthdate",
-            "child",
-            "given_name",
-            "grade",
-            "graduation_year",
-            "last_name",
-            "middle_name",
-            "nickname",
-            "people_permissions",
-            "site_administrator",
-            "gender",
-            "inactivated_at",
-            "created_at",
-            "updated_at",
-            "first_name",
-            "remote_id",
-            "membership",
-            "status",
-        ]
-        pagination: PaginationParams
-        # query_params:
+    # def create(self, params: CreatePersonParams) -> None:
+    #     self._create_object(params)  # type: ignore
 
-    @classmethod
-    def retrieve(cls, id: str, **params: Any) -> Self:
-        instance = cls(**params)
-        instance.id = id
-        instance.refresh()
-        return instance
+    # def update(self, params: UpdatePersonParams) -> None:
+    #     if not self.id:
+    #         raise IdRequiredError(self)
+    #     self._update_object(params)  # type: ignore
 
-    def get(self, id: str) -> None:
-        self.id = id
-        self.refresh()
+    # def delete(self) -> None:
+    #     self._delete_object()
 
-    def create(self, params: CreatePersonParams) -> None:
-        self._create_object(params)  # type: ignore
-
-    def update(self, params: UpdatePersonParams) -> None:
-        if not self.id:
-            raise IdRequiredError(self)
-        self._update_object(params)  # type: ignore
-
-    def delete(self) -> None:
-        self._delete_object()
-
-    def object_url(self) -> str:
-        return "people/v2/people"
+    def _object_url(self) -> str:
+        return self.OBJECT_URL
