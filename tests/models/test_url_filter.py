@@ -1,4 +1,4 @@
-from pco_python.models._url_date_filter import UrlDateFilter
+from planning_center_python.models._url_date_filter import UrlDateFilter
 
 
 def test_url_filter_returns_formatted_dictionary():

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Callable, Optional
 
-from pco_python.api.pco_token import PCOToken
+from planning_center_python.api.pco_token import PCOToken
 
 
 @dataclass

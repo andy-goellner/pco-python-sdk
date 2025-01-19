@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from typing import ClassVar, NotRequired, TypedDict
-from pco_python.models.pco_object import PCOObject
+from planning_center_python.models.pco_object import PCOObject
 
 
 class Person(PCOObject):

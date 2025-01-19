@@ -1,6 +1,6 @@
 import pytest
-from pco_python.errors import SignatureVerificationError
-from pco_python.models import WebhookSignature
+from planning_center_python.errors import SignatureVerificationError
+from planning_center_python.models import WebhookSignature
 
 
 SAMPLE_HEADERS = {
