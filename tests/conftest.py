@@ -49,7 +49,7 @@ def failed_client():
 @pytest.fixture
 def valid_credentials():
     pco_token = PCOToken(
-        access_token="foo", expires_in=700, refresh_token="refreshtoken"
+        {"access_token": "foo", "expires_in": 700, "refresh_token": "refreshtoken"}
     )
     creds = Credentials(
         client_id="testclientid", client_secret="testclientsecret", pco_token=pco_token
