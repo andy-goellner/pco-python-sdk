@@ -1,5 +1,5 @@
-from pco_python.models.pco_object import PCOObject
-from pco_python.models.person import Person
+from planning_center_python.models.pco_object import PCOObject
+from planning_center_python.models.person import Person
 
 
 def test_object_url_returns_the_base_endpoint():

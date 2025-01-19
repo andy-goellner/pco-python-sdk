@@ -1,4 +1,4 @@
-from pco_python.errors import SignatureVerificationError
+from planning_center_python.errors import SignatureVerificationError
 
 
 class TestSignatureError(object):

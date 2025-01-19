@@ -3,9 +3,9 @@ import json
 from typing import Any, Optional
 
 import pytest
-from pco_python.api import AbstractHttpClient, Credentials, PCOToken
-from pco_python.data.api_response.pco_response import PCOResponse
-from pco_python.errors import RequestFailedError
+from planning_center_python.api import AbstractHttpClient, Credentials, PCOToken
+from planning_center_python.data.api_response.pco_response import PCOResponse
+from planning_center_python.errors import RequestFailedError
 
 
 @pytest.fixture

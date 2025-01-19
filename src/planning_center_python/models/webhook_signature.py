@@ -2,7 +2,7 @@ from hashlib import sha256
 import hmac
 from typing import Any, Dict
 
-from pco_python.errors import SignatureVerificationError
+from planning_center_python.errors import SignatureVerificationError
 
 SIGNATURE_HEADER = "X-PCO-Webhooks-Authenticity"
 

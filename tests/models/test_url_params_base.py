@@ -1,4 +1,4 @@
-from pco_python.models._url_params_base import UrlParamsBase
+from planning_center_python.models._url_params_base import UrlParamsBase
 
 
 def test_url_params_include_returns_comma_delim_string():

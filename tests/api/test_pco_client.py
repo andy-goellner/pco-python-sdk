@@ -1,6 +1,6 @@
-from pco_python.api import Credentials, PCOClient
-from pco_python.api._person_service import PersonService
-from pco_python.api.abstract_http_client import AbstractHttpClient
+from planning_center_python.api import Credentials, PCOClient
+from planning_center_python.api._person_service import PersonService
+from planning_center_python.api.abstract_http_client import AbstractHttpClient
 
 
 def test_pco_client_initializes_an_http_client(

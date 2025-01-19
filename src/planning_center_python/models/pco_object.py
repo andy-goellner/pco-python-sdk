@@ -1,6 +1,6 @@
 from collections.abc import Mapping
 from typing import Any, ClassVar, Optional, cast
-from pco_python.errors import InvalidParamsError, InvalidRequestError
+from planning_center_python.errors import InvalidParamsError, InvalidRequestError
 
 
 class PCOObject:

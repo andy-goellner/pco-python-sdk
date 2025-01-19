@@ -1,8 +1,8 @@
 from typing import Optional
-from pco_python.api._person_service import PersonService
-from pco_python.api.abstract_http_client import AbstractHttpClient
-from pco_python.api.credentials import Credentials
-from pco_python.api.http_client import HttpClient
+from planning_center_python.api._person_service import PersonService
+from planning_center_python.api.abstract_http_client import AbstractHttpClient
+from planning_center_python.api.credentials import Credentials
+from planning_center_python.api.http_client import HttpClient
 
 
 class PCOClient(object):

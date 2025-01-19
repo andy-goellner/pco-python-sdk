@@ -1,7 +1,7 @@
 from typing import Any, Mapping, Optional
-from pco_python.api.abstract_http_client import AbstractHttpClient
-from pco_python.data.api_response.pco_response import PCOResponse
-from pco_python.models.pco_object import PCOObject
+from planning_center_python.api.abstract_http_client import AbstractHttpClient
+from planning_center_python.data.api_response.pco_response import PCOResponse
+from planning_center_python.models.pco_object import PCOObject
 
 
 class PcoService(object):

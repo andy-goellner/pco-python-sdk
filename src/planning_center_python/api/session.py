@@ -1,7 +1,7 @@
 from requests_oauthlib import OAuth2Session
 
-from pco_python.api.credentials import Credentials
-from pco_python.errors import InvalidCredentialsError
+from planning_center_python.api.credentials import Credentials
+from planning_center_python.errors import InvalidCredentialsError
 
 TOKEN_URL = "https://api.planningcenteronline.com/oauth/token"
 SCOPES = "people check_ins groups"

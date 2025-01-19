@@ -2,7 +2,7 @@ from abc import ABC
 from collections.abc import Mapping
 from typing import Any, Optional
 
-from pco_python.data.api_response.pco_response import PCOResponse
+from planning_center_python.data.api_response.pco_response import PCOResponse
 
 
 class AbstractHttpClient(ABC):

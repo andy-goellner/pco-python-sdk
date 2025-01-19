@@ -1,8 +1,8 @@
 from collections.abc import Mapping
 from typing import Literal, Optional
-from pco_python.api._pco_service import PcoService
-from pco_python.models._pagination_params import PaginationParams
-from pco_python.models.person import Person
+from planning_center_python.api._pco_service import PcoService
+from planning_center_python.models._pagination_params import PaginationParams
+from planning_center_python.models.person import Person
 
 
 class PersonService(PcoService):

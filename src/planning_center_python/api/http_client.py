@@ -1,10 +1,10 @@
 import json
 from typing import Any, Mapping, Optional
-from pco_python.api import AbstractHttpClient
-from pco_python.api.credentials import Credentials
-from pco_python.api.session import Session
-from pco_python.data.api_response.pco_response import PCOResponse
-from pco_python.errors import RequestFailedError
+from planning_center_python.api import AbstractHttpClient
+from planning_center_python.api.credentials import Credentials
+from planning_center_python.api.session import Session
+from planning_center_python.data.api_response.pco_response import PCOResponse
+from planning_center_python.errors import RequestFailedError
 
 
 class HttpClient(AbstractHttpClient):
