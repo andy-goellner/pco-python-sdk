@@ -1,9 +1,12 @@
 import pytest
+
+from collections.abc import Mapping
+from typing import Any
 from planning_center_python.errors import SignatureVerificationError
 from planning_center_python.models import WebhookSignature
 
 
-SAMPLE_HEADERS = {
+SAMPLE_HEADERS: Mapping[str, Any] = {
     "X-PCO-Webhooks-Event-ID": 1234567,
     "X-PCO-Webhooks-Event": "1sa1b1c-def1-ghi2-9876-123456acvb",
     "X-PCO-Webhooks-Name": "people.v2.events.thing.happened",
