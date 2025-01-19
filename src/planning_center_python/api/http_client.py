@@ -33,8 +33,8 @@ class HttpClient(AbstractHttpClient):
             json=body,
             headers=headers,
         )
-        print(vars(response.request))
-        print(response.text)
+        print(vars(response.request))  ## TODO: Migrate to logging hooks
+        print(response.text)  # TODO: Migrate to logging hooks
         if not response.ok:
             raise RequestFailedError(
                 message="API Returned an Error", status_code=response.status_code

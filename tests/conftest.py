@@ -3,6 +3,7 @@ import json
 from typing import Any, Optional
 
 import pytest
+import unittest.mock
 from planning_center_python.api import AbstractHttpClient, Credentials, PCOToken
 from planning_center_python.data.api_response.pco_response import PCOResponse
 from planning_center_python.errors import RequestFailedError
@@ -48,10 +49,22 @@ def failed_client():
 
 @pytest.fixture
 def valid_credentials():
+    def updater_fn():
+        pass
+
     pco_token = PCOToken(
         {"access_token": "foo", "expires_in": 700, "refresh_token": "refreshtoken"}
     )
     creds = Credentials(
-        client_id="testclientid", client_secret="testclientsecret", pco_token=pco_token
+        client_id="testclientid",
+        client_secret="testclientsecret",
+        pco_token=pco_token,
+        token_updater=updater_fn,
     )
     return creds
+
+
+@pytest.fixture
+def mock_oauth2():
+    with unittest.mock.patch("requests_oauthlib.OAuth2Session.__init__") as mock:
+        yield mock
