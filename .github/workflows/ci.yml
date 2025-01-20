@@ -33,4 +33,9 @@ jobs:
       with:
         args: "format --check"
     - name: Test
-      run: poetry run pytest --cov=planning_center_python
+      run: poetry run pytest --cov=planning_center_python --cov-report xml
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: coverage.xml
