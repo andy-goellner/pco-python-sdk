@@ -1,5 +1,8 @@
 import json
 from typing import Any, Mapping, Optional
+
+from urllib3.util import Retry
+from requests.adapters import HTTPAdapter
 from planning_center_python.api import AbstractHttpClient
 from planning_center_python.api.credentials import Credentials
 from planning_center_python.api.session import Session
@@ -12,9 +15,10 @@ class HttpClient(AbstractHttpClient):
     the planning center api.
     """
 
-    def __init__(self, credentials: Credentials):
+    def __init__(self, credentials: Credentials, retry_config: Optional[Retry] = None):
         self.base_url = "https://api.planningcenteronline.com"
         self.session = Session(credentials)
+        self._configure_retries(retry_config)
 
     def request(
         self,
@@ -41,3 +45,17 @@ class HttpClient(AbstractHttpClient):
             )
 
         return PCOResponse(response.text, response.status_code, response.headers)
+
+    def _configure_retries(self, retry_strategy: Retry | None):
+        strategy = retry_strategy or self._default_retry_strategy
+        adapter = HTTPAdapter(max_retries=strategy)
+        self.session.mount("https://", adapter)
+
+    @property
+    def _default_retry_strategy(self):
+        return Retry(
+            total=5,
+            backoff_factor=1,
+            respect_retry_after_header=True,
+            status_forcelist=[413, 429, 502, 503],
+        )
