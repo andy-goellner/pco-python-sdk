@@ -1,3 +1,6 @@
+<!-- README.md -->
++ [![cov](https://andy-goellner.github.io/<repo>/badges/coverage.svg)](https://github.com/andy-goellner/pco-python-sdk/actions)
+
 # pco-python-sdk
 A Python SDK for simplifying interactions with the Planning Center API.
 

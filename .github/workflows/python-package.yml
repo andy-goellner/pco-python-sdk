@@ -33,4 +33,4 @@ jobs:
       with:
         args: "format --check"
     - name: Test
-      run: poetry run pytest
+      run: poetry run pytest --cov=planning_center_python
