@@ -19,13 +19,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install poetry
+      run: pipx install poetry
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'poetry'  
-    - name: Install poetry
-      uses: abatilo/actions-poetry@v4
     - name: Install dependencies
       run: poetry install
     - name: Lint
