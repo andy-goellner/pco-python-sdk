@@ -1,7 +1,7 @@
 from collections.abc import Mapping
 from hashlib import sha256
 import hmac
-from typing import Any
+from typing import Any, Union
 
 from planning_center_python.errors import SignatureVerificationError
 
@@ -23,7 +23,7 @@ class WebhookSignature(object):
         return mac.hexdigest()
 
     @staticmethod
-    def _get_header_signature(header: Mapping[str, Any]) -> Any | None:
+    def _get_header_signature(header: Mapping[str, Any]) -> Union[Any, None]:
         return header.get(SIGNATURE_HEADER)
 
     @classmethod
