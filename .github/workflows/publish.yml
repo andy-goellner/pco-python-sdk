@@ -3,7 +3,7 @@ name: Publish
 on:
   push:
     tags:
-      - '*.*.*'
+      - 'v*.*.*'
 
 jobs:
   pypi-publish:
@@ -26,3 +26,9 @@ jobs:
       run: poetry build
     - name: Publish package distributions to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
+    - name: Upload release binaries
+      uses: alexellis/upload-assets@0.4.0
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        asset_paths: '["./dist/planning_center_python*"]'

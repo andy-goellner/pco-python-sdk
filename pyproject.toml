@@ -1,6 +1,6 @@
 [project]
 name = "planning-center-python"
-version = "0.1.0"
+version = "0.0.2"
 description = "Python wrappers for interacting with the Planning Center Online APIs"
 license = "GNU GPLv3"
 readme = "README.md"
@@ -107,7 +107,11 @@ docstring-code-line-length = "dynamic"
 
 [tool.semantic-release]
 allow_zero_version = true
-version_toml = [
-    "pyproject.toml:project.version",
-]
+version_toml = ["pyproject.toml:project.version"]
 version_variables = ['VERSION']
+
+[tool.semantic_release.changelog]
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.remote]
+ignore_token_for_push=true
