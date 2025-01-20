@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "pco_python"
+name = "planning_center_python"
 version = "0.1.0"
 description = ""
 authors = ["Andy Goellner <agoellner@yahoo.com>"]
 license = "GNU GPLv3"
 readme = "README.md"
-packages = [{include = "pco_python", from = "src"}]
+packages = [{include = "planning_center_python", from = "src"}]
 
 [tool.poetry.dependencies]
-python = ">=3.8"
+python = ">=3.9"
 pydantic = ">=2.8.0"
 pydantic-settings = ">=2.4.0"
 requests = ">=2.32.3"
@@ -18,6 +18,7 @@ requests-oauthlib = ">=2.0.0"
 pytest = ">=8.3.2"
 pytest-mock = "^3.14.0"
 freezegun = "^1.5.1"
+pytest-cov = "^6.0.0"
 
 [tool.poetry.group.typing.dependencies]
 mypy = ">=1.11.0"
@@ -62,7 +63,7 @@ line-length = 88
 indent-width = 4
 
 # Assume Python 3.8
-target-version = "py38"
+target-version = "py39"
 
 [tool.ruff.lint]
 # Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
