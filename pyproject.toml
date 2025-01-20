@@ -1,18 +1,34 @@
-[tool.poetry]
+[project]
 name = "planning-center-python"
 version = "0.1.0"
-description = ""
-authors = ["Andy Goellner <andy.goellner@gmail.com>"]
+description = "Python wrappers for interacting with the Planning Center Online APIs"
 license = "GNU GPLv3"
 readme = "README.md"
-packages = [{include = "planning_center_python", from = "src"}]
+authors = [{name = "Andy Goellner", email = "andy.goellner@gmail.com"}]
+maintainers = [{name = "Andy Goellner", email = "andy.goellner@gmail.com"}]
+keywords = ["sdk", "planning center online"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet",
+]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "pydantic>=2.8.0",
+    "pydantic-settings>=2.4.0",
+    "requests>=2.32.3",
+    "requests-oauthlib>=2.0.0",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.10,<3.13"
-pydantic = ">=2.8.0"
-pydantic-settings = ">=2.4.0"
-requests = ">=2.32.3"
-requests-oauthlib = ">=2.0.0"
+[project.urls]
+repository = "https://github.com/andy-goellner/pco-python-sdk"
+
+
+[tool.poetry]
+packages = [{include = "planning_center_python", from = "src"}]
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.3.2"
