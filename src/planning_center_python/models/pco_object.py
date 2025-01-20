@@ -1,5 +1,5 @@
 from collections.abc import Mapping
-from typing import Any, ClassVar, Optional, Union, cast
+from typing import Any, ClassVar, Optional, cast
 from planning_center_python.errors import InvalidParamsError, InvalidRequestError
 
 
@@ -76,9 +76,9 @@ class PCOObject:
             setattr(self, key, val)
 
     @property
-    def id(self) -> Union[str, None]:
+    def id(self) -> str | None:
         return self._id
 
     @property
-    def type(self) -> Union[str, None]:
+    def type(self) -> str | None:
         return self._type
