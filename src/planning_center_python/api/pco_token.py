@@ -14,7 +14,7 @@ class PCOToken:
     @property
     def expires_in(self) -> float:
         if not self.expires_at:
-            return -1
+            return 1
 
         print("calculating expires_in")
         # time in seconds

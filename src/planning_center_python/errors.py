@@ -39,3 +39,9 @@ class InvalidParamsError(BaseError):
         self.klass = klass
         self.class_name = type(klass).__name__
         self.param_name = param_name
+
+
+class PCOClientInitializationError(BaseError):
+    def __init__(self):
+        message = "credentials or http_client are required to initialize PCOClient"
+        super().__init__(message)

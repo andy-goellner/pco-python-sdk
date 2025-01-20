@@ -1,6 +1,7 @@
+from collections.abc import Mapping
 from hashlib import sha256
 import hmac
-from typing import Any, Dict
+from typing import Any
 
 from planning_center_python.errors import SignatureVerificationError
 
@@ -22,17 +23,17 @@ class WebhookSignature(object):
         return mac.hexdigest()
 
     @staticmethod
-    def _get_header_signature(header: Dict[str, Any]) -> Any | None:
+    def _get_header_signature(header: Mapping[str, Any]) -> Any | None:
         return header.get(SIGNATURE_HEADER)
 
     @classmethod
-    def verify(cls, payload: str, headers: Dict[str, Any], secret: str) -> bool:
+    def verify(cls, payload: str, headers: Mapping[str, Any], secret: str) -> bool:
         """Verifies the authenticity of a PCO generated webhook. Based on the webhook
         signing documented here https://developer.planning.center/docs/#/overview/webhooks.
 
         Args:
             payload (str): A json representation of the payload (body) included in the request
-            headers (Dict[str, Any]): A dictionary of the headers included in the request.
+            headers (Mapping[str, Any]): A dictionary of the headers included in the request.
             secret (str): The secret provided by PCO for signing webhooks for those events.
 
         Raises:

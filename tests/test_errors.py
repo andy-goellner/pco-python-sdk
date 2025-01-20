@@ -1,4 +1,7 @@
-from planning_center_python.errors import SignatureVerificationError
+from planning_center_python.errors import (
+    PCOClientInitializationError,
+    SignatureVerificationError,
+)
 
 
 class TestSignatureError(object):
@@ -17,3 +20,10 @@ class TestSignatureError(object):
     def test_payload_attribute_accessible(self):
         err = SignatureVerificationError("Test Message", "testsig", "testpayload")
         assert err.body == "testpayload"
+
+    def test_pco_client_initialization_error(self):
+        err = PCOClientInitializationError()
+        assert (
+            repr(err)
+            == "PCOClientInitializationError('credentials or http_client are required to initialize PCOClient')"
+        )
