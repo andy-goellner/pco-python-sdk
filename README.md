@@ -1,6 +1,7 @@
 <!-- README.md -->
 [![Build Status](https://github.com/andy-goellner/pco-python-sdk/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/andy-goellner/pco-python-sdk/actions?query=branch%main)
 [![Coverage Status](https://coveralls.io/repos/github/andy-goellner/pco-python-sdk/badge.svg?branch=main)](https://coveralls.io/github/andy-goellner/pco-python-sdk?branch=main)
+![PyPI - Version](https://img.shields.io/pypi/v/planning-center-python)
 
 # pco-python-sdk
 A Python SDK for simplifying interactions with the Planning Center API.
