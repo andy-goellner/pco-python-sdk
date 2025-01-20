@@ -114,4 +114,7 @@ version_variables = ['VERSION']
 changelog_file = "CHANGELOG.md"
 
 [tool.semantic_release.remote]
-ignore_token_for_push=true
+ignore_token_for_push = true
+
+[tool.semantic_release.publish]
+upload_to_vcs_release = false
