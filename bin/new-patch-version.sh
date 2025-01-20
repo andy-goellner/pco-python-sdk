@@ -1,3 +1,3 @@
 #!/bin/bash
 
-poetry run version --patch --skip-build --no-vcs-release
+poetry run semantic-release version --patch --skip-build --no-vcs-release
