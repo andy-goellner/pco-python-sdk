@@ -30,5 +30,7 @@ jobs:
       run: poetry install
     - name: Lint
       uses: astral-sh/ruff-action@v3.0.1
+      with:
+        args: "format --check"
     - name: Test
       run: poetry run pytest
