@@ -32,6 +32,8 @@ pip install planning_center_python
 
 ## Contributing
 
+TODO: Add dev instructions
+
 This project is under active development. Feel free to contribute and submit a pull request. The project is managed with poetry and tests use pytest.
 
 # Docs
@@ -78,3 +80,14 @@ person = client.person.get("personid")
 ```
 
 NOTE: The client is a singleton. You only need to initialize it once with an `http_client` or `credentials` from then on you can call `PCOClient()` to return the already configured client.
+
+
+# Contributing
+## Cutting a version
+
+This repo contains semantic-release as a dev dependency. Review the changelog and ensure version notes are up to date (or that all commits in release have correct commit semantics).
+
+Cut a new patch version.
+```bash
+bin/new-patch-version.sh
+```
