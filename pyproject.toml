@@ -105,13 +105,10 @@ line-ending = "auto"
 docstring-code-format = false
 docstring-code-line-length = "dynamic"
 
-[tool.semantic-release]
+[tool.semantic_release]
 allow_zero_version = true
 version_toml = ["pyproject.toml:project.version"]
-version_variables = ['src/planning_center_python/__init__.py:__version__']
-
-[tool.semantic_release.changelog]
-changelog_file = "CHANGELOG.md"
+version_variables = ["src/planning_center_python/__init__.py:__version__"]
 
 [tool.semantic_release.remote]
 ignore_token_for_push = true
