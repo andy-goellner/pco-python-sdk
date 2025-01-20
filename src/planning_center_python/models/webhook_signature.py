@@ -33,7 +33,7 @@ class WebhookSignature(object):
 
         Args:
             payload (str): A json representation of the payload (body) included in the request
-            headers (Dict[str, Any]): A dictionary of the headers included in the request.
+            headers (Mapping[str, Any]): A dictionary of the headers included in the request.
             secret (str): The secret provided by PCO for signing webhooks for those events.
 
         Raises:

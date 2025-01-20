@@ -71,3 +71,5 @@ credentials = Credentials(
 client = PCOClient(credentials=credentials)
 person = client.person.get("personid")
 ```
+
+NOTE: The client is a singleton. You only need to initialize it once with an `http_client` or `credentials` from then on you can call `PCOClient()` to return the already configured client.
