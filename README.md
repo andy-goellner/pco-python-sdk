@@ -26,7 +26,7 @@ You don't need this source code unless you want to modify the package. If you ju
 want to use the package, just run:
 
 ```sh
-pip install pco_python_sdk
+pip install planning_center_python
 ```
 
 ## Contributing
