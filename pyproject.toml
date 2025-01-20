@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [{include = "planning_center_python", from = "src"}]
 
 [tool.poetry.dependencies]
-python = ">=3.9"
+python = ">=3.9,<3.13"
 pydantic = ">=2.8.0"
 pydantic-settings = ">=2.4.0"
 requests = ">=2.32.3"
@@ -19,6 +19,7 @@ pytest = ">=8.3.2"
 pytest-mock = "^3.14.0"
 freezegun = "^1.5.1"
 pytest-cov = "^6.0.0"
+coveralls = "^4.0.1"
 
 [tool.poetry.group.typing.dependencies]
 mypy = ">=1.11.0"
