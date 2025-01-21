@@ -1,6 +1,10 @@
 from collections.abc import Mapping
 from typing import Any, ClassVar, Optional, cast
-from planning_center_python.errors import InvalidParamsError, InvalidRequestError
+from planning_center_python.errors import (
+    InvalidParamsError,
+    InvalidRequestError,
+    NoAttributesDefinedError,
+)
 
 
 class PCOObject:
@@ -14,11 +18,12 @@ class PCOObject:
         self._id = id or object_data.get("id")
         self._type = object_data.get("type") or self.OBJECT_TYPE
         self._validate()
+        self.attributes = object_data.get("attributes")
 
-        if object_data:
-            self._init_attributes(
-                cast(Mapping[str, Any], object_data.get("attributes"))
-            )
+    def get_attribute(self, name: str) -> Any:
+        if not self.attributes:
+            raise NoAttributesDefinedError
+        return self.attributes.get(name)
 
     # @classmethod
     # def retrieve(cls, id: str) -> Self:

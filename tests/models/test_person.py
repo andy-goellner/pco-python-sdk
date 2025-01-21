@@ -1,3 +1,5 @@
+import pytest
+from planning_center_python.errors import NoAttributesDefinedError
 from planning_center_python.models.pco_object import PCOObject
 from planning_center_python.models.person import Person
 
@@ -25,13 +27,33 @@ def test_person_init_sets_type():
     assert person.type == "Person"
 
 
-def test_data_inits_attributes():
+def test_data_sets_attributes():
     person = Person(
         {"data": {"id": "foo", "type": "Person", "attributes": {"bar": "baz"}}}
     )
     assert person.id == "foo"
     assert person.type == "Person"
-    assert person.bar == "baz"  # type: ignore
+    assert person.attributes == {"bar": "baz"}
+
+
+def test_get_attribute_returns_value():
+    person = Person(
+        {"data": {"id": "foo", "type": "Person", "attributes": {"bar": "baz"}}}
+    )
+    assert person.get_attribute("bar") == "baz"
+
+
+def test_get_attribute_raises_when_not_defined():
+    person = Person(
+        {
+            "data": {
+                "id": "foo",
+                "type": "Person",
+            }
+        }
+    )
+    with pytest.raises(NoAttributesDefinedError):
+        person.get_attribute("foo")
 
 
 # def test_person_retrieve_sets_the_id(successful_client: AbstractHttpClient):

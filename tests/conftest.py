@@ -3,7 +3,7 @@ import json
 from typing import Any, Optional
 
 import pytest
-import unittest.mock
+from unittest.mock import patch
 from planning_center_python.api import AbstractHttpClient, Credentials, PCOToken
 from planning_center_python.data.api_response.pco_response import PCOResponse
 from planning_center_python.errors import RequestFailedError
@@ -66,5 +66,5 @@ def valid_credentials():
 
 @pytest.fixture
 def mock_oauth2():
-    with unittest.mock.patch("requests_oauthlib.OAuth2Session.__init__") as mock:
-        yield mock
+    with patch("requests_oauthlib.OAuth2Session.__init__") as m:
+        yield m

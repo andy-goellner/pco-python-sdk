@@ -45,3 +45,7 @@ class PCOClientInitializationError(BaseError):
     def __init__(self):
         message = "credentials or http_client are required to initialize PCOClient"
         super().__init__(message)
+
+
+class NoAttributesDefinedError(BaseError):
+    pass
