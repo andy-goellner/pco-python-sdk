@@ -25,12 +25,6 @@ class PCOObject:
             raise NoAttributesDefinedError
         return self.attributes.get(name)
 
-    # @classmethod
-    # def retrieve(cls, id: str) -> Self:
-    #     instance = cls(id=id)
-    #     instance.refresh()
-    #     return instance
-
     def _object_url(self) -> str:
         raise NotImplementedError
 
@@ -41,32 +35,6 @@ class PCOObject:
             )
 
         return "%s/%s" % (self._object_url(), self.id)
-
-    # def refresh(self) -> None:
-    #     """Makes a request to the API for the given object and refreshes
-    #     the class properties.
-    #     """
-    #     response = self._client.request("get", self.instance_url())
-    #     attributes = response.get("attributes")
-    #     if attributes:
-    #         self._refresh_props(attributes)
-
-    # def _refresh_props(self, props: Dict[str, Any]) -> None:
-    #     """Sets a class properties for each value passed in.
-
-    #     Args:
-    #         props (Dict[str, Any]): a set of values for which a property should be generated
-    #     """
-    #     self._init_attributes(props)
-
-    # def _create_object(self, params: Dict[str, Any]) -> None:
-    #     self._client.request("post", self._object_url(), payload=params)
-
-    # def _update_object(self, params: Dict[str, Any]) -> None:
-    #     self._client.request("patch", self._instance_url(), payload=params)
-
-    # def _delete_object(self) -> None:
-    #     self._client.request("delete", self._instance_url())
 
     def _validate(self):
         if not self.id:
