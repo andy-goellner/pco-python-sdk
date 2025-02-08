@@ -1,11 +1,30 @@
 from datetime import date, datetime
-from typing import ClassVar, Optional, TypedDict
+from typing import Optional, TypedDict, cast
+from planning_center_python.models.gender import Gender
 from planning_center_python.models.pco_object import PCOObject
+from planning_center_python.models.primary_campus import PrimaryCampus
+from planning_center_python.types.abstract_pco_object import AbstractPCOObject
 
 
 class Person(PCOObject):
-    OBJECT_TYPE: ClassVar[str] = "Person"
-    OBJECT_URL: ClassVar[str] = "people/v2/people"
+    OBJECT_TYPE = "Person"
+    OBJECT_URL = "people/v2/people"
+    RELATIONSHIPS = [
+        {
+            "type": "Gender",
+            "method": "gender",
+            "key": "gender",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, Gender),
+        },
+        {
+            "type": "PrimaryCampus",
+            "method": "primary_campus",
+            "key": "primary_campus",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, PrimaryCampus),
+        },
+    ]
 
     class CreatePersonParams(TypedDict):
         accounting_administrator: Optional[bool]
@@ -62,17 +81,6 @@ class Person(PCOObject):
         site_administrator: Optional[bool]
         status: Optional[str]
         updated_at: Optional[datetime]
-
-    # def create(self, params: CreatePersonParams) -> None:
-    #     self._create_object(params)  # type: ignore
-
-    # def update(self, params: UpdatePersonParams) -> None:
-    #     if not self.id:
-    #         raise IdRequiredError(self)
-    #     self._update_object(params)  # type: ignore
-
-    # def delete(self) -> None:
-    #     self._delete_object()
 
     def _object_url(self) -> str:
         return self.OBJECT_URL
