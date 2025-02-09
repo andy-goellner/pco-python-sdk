@@ -14,7 +14,7 @@ class PcoService(object):
     def _request(
         self, verb: str, url: str, params: Optional[Mapping[str, str]] = None
     ) -> PCOResponse:
-        if verb == "get":
+        if verb.lower() == "get":
             query = params
             payload = None
         else:
