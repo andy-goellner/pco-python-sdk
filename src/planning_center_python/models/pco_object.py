@@ -85,7 +85,7 @@ class PCOObject(AbstractPCOObject):
         if object_data:
             for definition in self.RELATIONSHIPS:
                 relation = object_data.get(definition["key"])
-                if relation:
+                if relation and relation["data"]:
                     relation_id = relation["data"]["id"]
                     klass_instance = definition["klass"](id=relation_id)
                     built_relationships.append(

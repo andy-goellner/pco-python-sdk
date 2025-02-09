@@ -104,6 +104,20 @@ def test_pco_object_relationships_returns_list():
     assert isinstance(test_class.relationships, list)
 
 
+def test_pco_object_relationships_handles_null_object():
+    test_class = TestPCOObject(
+        data={
+            "id": "foo",
+            "type": "TestClass",
+            "attributes": {"bar": "baz"},
+            "relationships": {
+                "test_relationship_key": {"data": None},
+            },
+        }
+    )
+    assert test_class.relationships == []
+
+
 def test_pco_object_relationship_inits_class():
     test_class = TestPCOObject(data=TEST_DATA)
     assert isinstance(test_class.test_relationship, TestRelationship)  # type: ignore
