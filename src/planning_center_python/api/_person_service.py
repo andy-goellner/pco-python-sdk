@@ -53,4 +53,6 @@ class PersonService(PcoService):
 
     def get(self, id: str, params: Optional[UrlParams] = None) -> Person:
         response = self._request("GET", f"{Person.OBJECT_URL}/{id}", params)
-        return Person(data=response.data.get("data"))
+        return Person(
+            data=response.data.get("data"), included_data=response.data.get("included")
+        )
