@@ -81,6 +81,8 @@ person = client.person.get("personid")
 
 NOTE: The client is a singleton. You only need to initialize it once with an `http_client` or `credentials` from then on you can call `PCOClient()` to return the already configured client.
 
+The client also takes care of checking token expirations and will automatically refresh it using the refresh token in the credentials. After refreshing the token it will pass the new token to the function passed into the token_updater property so it can be saved if needed.
+
 
 # Contributing
 ## Cutting a version
