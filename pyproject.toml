@@ -1,6 +1,6 @@
 [project]
 name = "planning-center-python"
-version = "0.0.6"
+version = "0.0.7"
 description = "Python wrappers for interacting with the Planning Center Online APIs"
 license = "GNU GPLv3"
 readme = "README.md"
