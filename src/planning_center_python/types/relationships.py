@@ -11,5 +11,5 @@ class RelationshipDefinition(TypedDict):
 
 
 class Relationship(NamedTuple):
-    relationship_name: str
+    key: str
     class_instance: AbstractPCOObject
