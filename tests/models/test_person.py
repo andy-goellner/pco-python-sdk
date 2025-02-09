@@ -28,28 +28,22 @@ def test_person_init_sets_type():
 
 
 def test_data_sets_attributes():
-    person = Person(
-        {"data": {"id": "foo", "type": "Person", "attributes": {"bar": "baz"}}}
-    )
+    person = Person({"id": "foo", "type": "Person", "attributes": {"bar": "baz"}})
     assert person.id == "foo"
     assert person.type == "Person"
     assert person.attributes == {"bar": "baz"}
 
 
 def test_get_attribute_returns_value():
-    person = Person(
-        {"data": {"id": "foo", "type": "Person", "attributes": {"bar": "baz"}}}
-    )
+    person = Person({"id": "foo", "type": "Person", "attributes": {"bar": "baz"}})
     assert person.get_attribute("bar") == "baz"
 
 
 def test_get_attribute_raises_when_no_attributes_are_defined():
     person = Person(
         {
-            "data": {
-                "id": "foo",
-                "type": "Person",
-            }
+            "id": "foo",
+            "type": "Person",
         }
     )
     with pytest.raises(NoAttributesDefinedError):
@@ -57,7 +51,5 @@ def test_get_attribute_raises_when_no_attributes_are_defined():
 
 
 def test_get_attribute_returns_none_when_attribute_missing():
-    person = Person(
-        {"data": {"id": "foo", "type": "Person", "attributes": {"bar": "baz"}}}
-    )
+    person = Person({"id": "foo", "type": "Person", "attributes": {"bar": "baz"}})
     assert person.get_attribute("not_existent") is None
