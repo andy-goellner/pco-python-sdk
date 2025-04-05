@@ -1,8 +1,22 @@
 from datetime import date, datetime
 from typing import Optional, TypedDict, cast
+from planning_center_python.models.address import Address
+from planning_center_python.models.email import Email
+from planning_center_python.models.field_datum import FieldDatum
 from planning_center_python.models.gender import Gender
+from planning_center_python.models.household import Household
+from planning_center_python.models.inactive_reason import InactiveReason
+from planning_center_python.models.marital_status import MaritalStatus
+from planning_center_python.models.name_prefix import NamePrefix
+from planning_center_python.models.name_suffix import NameSuffix
+from planning_center_python.models.organization import Organization
 from planning_center_python.models.pco_object import PCOObject
+from planning_center_python.models.person_app import PersonApp
+from planning_center_python.models.phone_number import PhoneNumber
+from planning_center_python.models.platform_notification import PlatformNotification
 from planning_center_python.models.primary_campus import PrimaryCampus
+from planning_center_python.models.school import School
+from planning_center_python.models.social_profile import SocialProfile
 from planning_center_python.types.abstract_pco_object import AbstractPCOObject
 
 
@@ -23,6 +37,113 @@ class Person(PCOObject):
             "key": "primary_campus",
             "association_type": "one",
             "klass": cast(AbstractPCOObject, PrimaryCampus),
+        },
+    ]
+    INCLUSION_DEFINITIONS = [
+        {
+            "type": "Address",
+            "method": "addresses",
+            "key": "addresses",
+            "association_type": "many",
+            "klass": cast(AbstractPCOObject, Address),
+        },
+        {
+            "type": "Email",
+            "method": "emails",
+            "key": "emails",
+            "association_type": "many",
+            "klass": cast(AbstractPCOObject, Email),
+        },
+        {
+            "type": "FieldDatum",
+            "method": "field_data",
+            "key": "field_data",
+            "association_type": "many",
+            "klass": cast(AbstractPCOObject, FieldDatum),
+        },
+        {
+            "type": "Household",
+            "method": "households",
+            "key": "households",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, Household),
+        },
+        {
+            "type": "InactiveReason",
+            "method": "inactive_reason",
+            "key": "inactive_reason",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, InactiveReason),
+        },
+        {
+            "type": "MaritalStatus",
+            "method": "marital_status",
+            "key": "marital_status",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, MaritalStatus),
+        },
+        {
+            "type": "NamePrefix",
+            "method": "name_prefix",
+            "key": "name_prefix",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, NamePrefix),
+        },
+        {
+            "type": "NameSuffix",
+            "method": "name_suffix",
+            "key": "name_suffix",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, NameSuffix),
+        },
+        {
+            "type": "Organization",
+            "method": "organization",
+            "key": "organization",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, Organization),
+        },
+        {
+            "type": "PersonApp",
+            "method": "person_apps",
+            "key": "person_apps",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, PersonApp),
+        },
+        {
+            "type": "PhoneNumber",
+            "method": "phone_numbers",
+            "key": "phone_numbers",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, PhoneNumber),
+        },
+        {
+            "type": "PlatformNotification",
+            "method": "platform_notifications",
+            "key": "platform_notifications",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, PlatformNotification),
+        },
+        {
+            "type": "PrimaryCampus",
+            "method": "primary_campus",
+            "key": "primary_campus",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, PrimaryCampus),
+        },
+        {
+            "type": "School",
+            "method": "school",
+            "key": "school",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, School),
+        },
+        {
+            "type": "SocialProfile",
+            "method": "social_profiles",
+            "key": "social_profiles",
+            "association_type": "one",
+            "klass": cast(AbstractPCOObject, SocialProfile),
         },
     ]
 

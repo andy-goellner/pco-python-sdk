@@ -1,0 +1,9 @@
+from planning_center_python.models.pco_object import PCOObject
+
+
+class NamePrefix(PCOObject):
+    OBJECT_TYPE = "NamePrefix"
+    OBJECT_URL = "people/v2/name_prefixes"
+
+    def _object_url(self) -> str:
+        return self.OBJECT_URL

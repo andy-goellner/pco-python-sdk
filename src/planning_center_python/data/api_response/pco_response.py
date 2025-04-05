@@ -13,3 +13,6 @@ class PCOResponse(object):
         self.headers = headers
         self.body = body
         self.data = json.loads(body)
+
+    def is_successful(self) -> bool:
+        return self.code < 299

@@ -10,7 +10,7 @@ def test_get_raises_not_implemented_error(successful_client: AbstractHttpClient)
         svc.get("foo", {"bar": "baz"})
 
 
-def test__request_formats_query_on_get(
+def test__request_sets_query_on_get(
     mocker: MagicMock, successful_client: AbstractHttpClient
 ):
     spy = mocker.spy(successful_client, "request")
@@ -18,6 +18,18 @@ def test__request_formats_query_on_get(
     svc._request("GET", "foo/bar", {"param": "one"})  # type: ignore
     assert spy.call_count == 1
     spy.assert_called_once_with("GET", "foo/bar", {"param": "one"}, None, {})
+
+
+def test__request_formats_query_on_get(
+    mocker: MagicMock, successful_client: AbstractHttpClient
+):
+    spy = mocker.spy(successful_client, "request")
+    svc = PcoService(successful_client)
+    svc._request("GET", "foo/bar", {"param": "one", "include": ["thing", "thing_two"]})  # type: ignore
+    assert spy.call_count == 1
+    spy.assert_called_once_with(
+        "GET", "foo/bar", {"param": "one", "include": "thing,thing_two"}, None, {}
+    )
 
 
 def test__request_formats_payload_on_post(
