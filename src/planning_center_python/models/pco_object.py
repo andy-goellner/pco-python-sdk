@@ -13,6 +13,13 @@ from planning_center_python.types.relationships import (
     RelationshipDefinition,
 )
 
+# TODO
+# 1. Determine if relationships get the method name, or we prepend it
+# 2. add support for many to one relationships and inclusions
+# 3. ensure we add support for many to one in fetchers
+# 4. tests for included_keys
+# 5. remove print statements and move to logging
+
 
 class PCOObject(AbstractPCOObject):
     """Base class object from which all Planning Center objects should inherit from"""
@@ -26,17 +33,19 @@ class PCOObject(AbstractPCOObject):
         self,
         data: Mapping[str, Any] = {},
         id: Optional[str] = None,
-        included_data: list[Mapping[str, Any]] = [],
+        included_data: Optional[list[Mapping[str, Any]]] = [],
     ) -> Any:
-        self.__init__(data=data, id=id)
+        self.__init__(data=data, id=id, included_data=included_data)
 
     def __init__(
         self,
         data: Mapping[str, Any] = {},
         id: Optional[str] = None,
-        included_data: list[Mapping[str, Any]] = [],
+        included_data: Optional[list[Mapping[str, Any]]] = [],
     ):
+        print(f"INTITIALIZING OBJECT {self.OBJECT_TYPE}")
         self._data = data
+        self._included_data = included_data
         self._id = id or data.get("id")
         self._type = data.get("type") or self.OBJECT_TYPE
         self._validate()
@@ -44,6 +53,7 @@ class PCOObject(AbstractPCOObject):
         self.relationships = self._init_relationships(
             cast(Mapping[str, Any], data.get("relationships"))
         )
+        print(f"{self.OBJECT_TYPE} included_data {included_data}")
         self.included = self._init_inclusions(included_data)
 
     def get_attribute(self, name: str) -> Any:
@@ -85,13 +95,15 @@ class PCOObject(AbstractPCOObject):
         if object_data:
             for definition in self.RELATIONSHIPS:
                 relation = object_data.get(definition["key"])
-                if relation:
+                if relation and relation["data"]:
                     relation_id = relation["data"]["id"]
                     klass_instance = definition["klass"](id=relation_id)
                     built_relationships.append(
                         Relationship(definition["key"], klass_instance)
                     )
-                    self.__setattr__(definition["method"], klass_instance)
+                    self.__setattr__(
+                        definition["method"], klass_instance
+                    )  # TODO see note at top
         return built_relationships
 
     def _init_inclusions(
@@ -108,7 +120,9 @@ class PCOObject(AbstractPCOObject):
                     built_inclusions.append(
                         Inclusion(definition["key"], klass_instance)
                     )
-                    self.__setattr__(definition["method"], klass_instance)
+                    self.__setattr__(
+                        definition["method"], klass_instance
+                    )  # TODO see note at top
 
         return built_inclusions
 
@@ -125,3 +139,7 @@ class PCOObject(AbstractPCOObject):
     @property
     def type(self) -> str | None:
         return self._type
+
+    @property
+    def included_keys(self):
+        return set([inc.key for inc in self.included])
